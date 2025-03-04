@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://dg7m4ropivb7m"]
+
+[ext_resource type="Script" path="res://scenes/objects/player.gd" id="1_mxvbk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_em0wd"]
+bg_color = Color(0.901961, 0.968627, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7dpp"]
+bg_color = Color(0.666667, 0.8, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Player" type="Node"]
+script = ExtResource("1_mxvbk")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -44.0
+offset_right = 150.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_em0wd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_a7dpp")
+step = 1.0
+value = 50.0
+show_percentage = false

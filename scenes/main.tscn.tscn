@@ -1,10 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://q1pdyx7dov4b"]
+[gd_scene load_steps=9 format=3 uid="uid://q1pdyx7dov4b"]
 
 [ext_resource type="Script" path="res://scripts/title/sky_clock.gd" id="1_tcv57"]
-[ext_resource type="Texture2D" uid="uid://b1hijly7voxhr" path="res://title.png" id="2_q6nlt"]
+[ext_resource type="Texture2D" uid="uid://b0eq4jutni2rj" path="res://textures/snow_way.png" id="2_iwh7o"]
+[ext_resource type="PackedScene" uid="uid://dg7m4ropivb7m" path="res://scenes/objects/player.tscn" id="3_djmfx"]
 [ext_resource type="Script" path="res://scripts/title/title_animation.gd" id="3_p4xtq"]
+[ext_resource type="FontFile" uid="uid://ebg8pxwvi7c1" path="res://fonts/Cinzel,Oswald/Cinzel/Cinzel-VariableFont_wght.ttf" id="4_ep4ng"]
+[ext_resource type="Texture2D" uid="uid://cgrprj6f6ekt4" path="res://textures/newspaper.png" id="6_xut2p"]
+[ext_resource type="FontFile" uid="uid://801dqtmrq0mt" path="res://fonts/veteran_typewriter/veteran typewriter.ttf" id="7_i71pv"]
 
-[node name="Main_tscn" type="Node"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udl0d"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="Main" type="Node"]
 
 [node name="Sky" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -19,21 +30,111 @@ script = ExtResource("1_tcv57")
 wait_time = 60.0
 autostart = true
 
-[node name="Title" type="TextureRect" parent="."]
+[node name="BG" type="TextureRect" parent="." groups=["background"]]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 1084.0
+grow_horizontal = 2
+pivot_offset = Vector2(300, 0)
+mouse_filter = 2
+texture = ExtResource("2_iwh7o")
+
+[node name="Player" parent="." instance=ExtResource("3_djmfx")]
+
+[node name="TitleMenus" type="Node" parent="."]
+script = ExtResource("3_p4xtq")
+
+[node name="Title" type="Label" parent="TitleMenus"]
+self_modulate = Color(1, 1, 1, 0)
+visibility_layer = 512
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = -32
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("4_ep4ng")
+theme_override_font_sizes/font_size = 84
+text = "The Man
+Solitary"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="Control" parent="TitleMenus"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameStartButton" type="Button" parent="TitleMenus/Buttons"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -512.0
-offset_top = -512.0
-offset_right = 512.0
-offset_bottom = 512.0
+offset_left = -160.0
+offset_top = -76.5
+offset_right = 160.0
+offset_bottom = -3.5
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1e-05, 1e-05)
-pivot_offset = Vector2(512, 512)
-texture = ExtResource("2_q6nlt")
-script = ExtResource("3_p4xtq")
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("4_ep4ng")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_udl0d")
+text = "Game Start"
+
+[node name="SettingsButton" type="Button" parent="TitleMenus/Buttons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = 3.5
+offset_right = 160.0
+offset_bottom = 76.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("4_ep4ng")
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_udl0d")
+text = "Settings
+"
+
+[node name="Newspaper" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(300, 450)
+rotation = -0.31068
+scale = Vector2(2, 2)
+texture = ExtResource("6_xut2p")
+
+[node name="Label" type="Label" parent="Newspaper"]
+offset_left = 9.0
+offset_top = -142.0
+offset_right = 124.0
+offset_bottom = -119.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("7_i71pv")
+theme_override_font_sizes/font_size = 14
+text = "A Man On The Street
+Who Is Crazy"
 
 [connection signal="timeout" from="Sky/Timer" to="Sky" method="_on_timer_timeout"]

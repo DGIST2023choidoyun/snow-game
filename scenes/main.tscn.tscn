@@ -27,20 +27,31 @@ color = Color(0.666667, 0.8, 1, 1)
 script = ExtResource("1_tcv57")
 
 [node name="Timer" type="Timer" parent="Sky"]
-wait_time = 60.0
+wait_time = 5.0
 autostart = true
 
-[node name="BG" type="TextureRect" parent="." groups=["background"]]
+[node name="BG" type="TextureRect" parent="Sky" groups=["background"]]
+clip_children = 2
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -300.0
 offset_right = 300.0
-offset_bottom = 1084.0
+offset_bottom = 1200.0
 grow_horizontal = 2
 pivot_offset = Vector2(300, 0)
 mouse_filter = 2
 texture = ExtResource("2_iwh7o")
+
+[node name="ColorRect" type="ColorRect" parent="Sky/BG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.666667, 0.8, 1, 0.25098)
 
 [node name="Player" parent="." instance=ExtResource("3_djmfx")]
 

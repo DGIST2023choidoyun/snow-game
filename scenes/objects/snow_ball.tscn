@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://sxtw3rpsgq3u"]
+
+[ext_resource type="Texture2D" uid="uid://dxnu4saofsq0p" path="res://icon.png" id="1_gsjsr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v7dgu"]
+radius = 64.0
+
+[node name="Snowball" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gsjsr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_v7dgu")

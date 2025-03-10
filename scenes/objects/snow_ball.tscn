@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://sxtw3rpsgq3u"]
+[gd_scene load_steps=4 format=3 uid="uid://sxtw3rpsgq3u"]
 
+[ext_resource type="Script" path="res://scripts/snow_ball.gd" id="1_7va6a"]
 [ext_resource type="Texture2D" uid="uid://dxnu4saofsq0p" path="res://icon.png" id="1_gsjsr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v7dgu"]
 radius = 64.0
 
 [node name="Snowball" type="Area2D"]
+script = ExtResource("1_7va6a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_gsjsr")

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dg7m4ropivb7m"]
+[gd_scene load_steps=5 format=3 uid="uid://dg7m4ropivb7m"]
 
-[ext_resource type="Script" path="res://scenes/objects/player.gd" id="1_mxvbk"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_mxvbk"]
 [ext_resource type="Texture2D" uid="uid://dxnu4saofsq0p" path="res://icon.png" id="2_1rnll"]
+[ext_resource type="AudioStream" uid="uid://dyjwn6ufxoqbk" path="res://sounds/effect/throw.mp3" id="3_mtelt"]
+[ext_resource type="AudioStream" uid="uid://b0ntvcq5o4b8k" path="res://sounds/effect/snowball_make.mp3" id="4_jnw4j"]
 
 [node name="Player" type="Node"]
 script = ExtResource("1_mxvbk")
@@ -26,3 +28,15 @@ texture_progress = ExtResource("2_1rnll")
 
 [node name="Marker2D" type="Marker2D" parent="SnowballProgress"]
 position = Vector2(64, 64)
+
+[node name="Throw" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(300, 400)
+stream = ExtResource("3_mtelt")
+volume_db = 10.0
+bus = &"Effect"
+
+[node name="Make" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(300, 400)
+stream = ExtResource("4_jnw4j")
+volume_db = 10.0
+bus = &"Effect"

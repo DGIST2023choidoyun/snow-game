@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://csqfdowqhribg"]
+
+[ext_resource type="Script" path="res://scripts/system/scenes.gd" id="1_qxc5g"]
+[ext_resource type="AudioStream" uid="uid://ijssdxq5v4kf" path="res://sounds/bgm/shades_of_grey.mp3" id="2_nuury"]
+
+[node name="Scenes" type="Node"]
+script = ExtResource("1_qxc5g")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_nuury")
+autoplay = true
+bus = &"BGM"

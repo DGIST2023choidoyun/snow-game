@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://q1pdyx7dov4b"]
+[gd_scene load_steps=10 format=3 uid="uid://q1pdyx7dov4b"]
 
-[ext_resource type="Script" path="res://scripts/title/sky_clock.gd" id="1_tcv57"]
-[ext_resource type="Texture2D" uid="uid://b0eq4jutni2rj" path="res://textures/snow_way.png" id="2_iwh7o"]
-[ext_resource type="PackedScene" uid="uid://dg7m4ropivb7m" path="res://scenes/objects/player.tscn" id="3_djmfx"]
-[ext_resource type="Script" path="res://scripts/title/title_animation.gd" id="3_p4xtq"]
-[ext_resource type="FontFile" uid="uid://ebg8pxwvi7c1" path="res://fonts/Cinzel,Oswald/Cinzel/Cinzel-VariableFont_wght.ttf" id="4_ep4ng"]
-[ext_resource type="Texture2D" uid="uid://cgrprj6f6ekt4" path="res://textures/newspaper.png" id="6_xut2p"]
-[ext_resource type="FontFile" uid="uid://801dqtmrq0mt" path="res://fonts/veteran_typewriter/veteran typewriter.ttf" id="7_i71pv"]
+[ext_resource type="Script" path="res://scripts/title/sky_clock.gd" id="1_nay05"]
+[ext_resource type="Texture2D" uid="uid://b0eq4jutni2rj" path="res://textures/snow_way.png" id="2_tp7y0"]
+[ext_resource type="PackedScene" uid="uid://dg7m4ropivb7m" path="res://scenes/objects/player.tscn" id="3_ylcxu"]
+[ext_resource type="Script" path="res://scripts/title/title_animation.gd" id="4_onrtu"]
+[ext_resource type="FontFile" uid="uid://ebg8pxwvi7c1" path="res://fonts/Cinzel,Oswald/Cinzel/Cinzel-VariableFont_wght.ttf" id="5_y4uc6"]
+[ext_resource type="PackedScene" uid="uid://dp8v4j0vv0x4v" path="res://scenes/ui/settings.tscn" id="6_3i7sf"]
+[ext_resource type="Texture2D" uid="uid://cgrprj6f6ekt4" path="res://textures/newspaper.png" id="7_abvu2"]
+[ext_resource type="FontFile" uid="uid://801dqtmrq0mt" path="res://fonts/veteran_typewriter/veteran typewriter.ttf" id="8_v1wur"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udl0d"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -24,10 +25,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.666667, 0.8, 1, 1)
-script = ExtResource("1_tcv57")
+script = ExtResource("1_nay05")
 
 [node name="Timer" type="Timer" parent="Sky"]
-wait_time = 5.0
+wait_time = 60.0
 autostart = true
 
 [node name="BG" type="TextureRect" parent="Sky" groups=["background"]]
@@ -42,7 +43,7 @@ offset_bottom = 1200.0
 grow_horizontal = 2
 pivot_offset = Vector2(300, 0)
 mouse_filter = 2
-texture = ExtResource("2_iwh7o")
+texture = ExtResource("2_tp7y0")
 
 [node name="ColorRect" type="ColorRect" parent="Sky/BG"]
 layout_mode = 1
@@ -53,10 +54,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.666667, 0.8, 1, 0.25098)
 
-[node name="Player" parent="." instance=ExtResource("3_djmfx")]
+[node name="Player" parent="." instance=ExtResource("3_ylcxu")]
 
 [node name="TitleMenus" type="Node" parent="."]
-script = ExtResource("3_p4xtq")
+script = ExtResource("4_onrtu")
 
 [node name="Title" type="Label" parent="TitleMenus"]
 self_modulate = Color(1, 1, 1, 0)
@@ -70,7 +71,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/line_spacing = -32
 theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("4_ep4ng")
+theme_override_fonts/font = ExtResource("5_y4uc6")
 theme_override_font_sizes/font_size = 84
 text = "The Man
 Solitary"
@@ -103,7 +104,7 @@ grow_vertical = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("4_ep4ng")
+theme_override_fonts/font = ExtResource("5_y4uc6")
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_udl0d")
 text = "Game Start"
@@ -124,28 +125,42 @@ grow_vertical = 2
 focus_mode = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
-theme_override_fonts/font = ExtResource("4_ep4ng")
+theme_override_fonts/font = ExtResource("5_y4uc6")
 theme_override_font_sizes/font_size = 48
 theme_override_styles/normal = SubResource("StyleBoxFlat_udl0d")
 text = "Settings
 "
 
-[node name="Newspaper" type="Sprite2D" parent="."]
+[node name="PreGame" type="Control" parent="TitleMenus"]
 visible = false
-position = Vector2(300, 450)
-rotation = -0.31068
-scale = Vector2(2, 2)
-texture = ExtResource("6_xut2p")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Label" type="Label" parent="Newspaper"]
+[node name="Newspaper" type="Sprite2D" parent="TitleMenus/PreGame"]
+position = Vector2(300, 554)
+rotation = -0.31068
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("7_abvu2")
+
+[node name="Label" type="Label" parent="TitleMenus/PreGame/Newspaper"]
 offset_left = 9.0
 offset_top = -142.0
 offset_right = 124.0
 offset_bottom = -119.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("7_i71pv")
+theme_override_fonts/font = ExtResource("8_v1wur")
 theme_override_font_sizes/font_size = 14
 text = "A Man On The Street
 Who Is Crazy"
 
+[node name="Settings" parent="." instance=ExtResource("6_3i7sf")]
+
 [connection signal="timeout" from="Sky/Timer" to="Sky" method="_on_timer_timeout"]
+[connection signal="button_up" from="TitleMenus/Buttons/GameStartButton" to="TitleMenus" method="start"]
+[connection signal="button_up" from="TitleMenus/Buttons/GameStartButton" to="TitleMenus/Buttons" method="hide"]
+[connection signal="button_up" from="TitleMenus/Buttons/SettingsButton" to="Settings" method="display"]
+[connection signal="gui_input" from="TitleMenus/PreGame" to="TitleMenus" method="_on_pre_game_gui_input"]

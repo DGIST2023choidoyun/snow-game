@@ -12,13 +12,14 @@ config_version=5
 
 config/name="The Man Solitary"
 config/version="0.0.1"
-run/main_scene="res://scenes/main.tscn.tscn"
+run/main_scene="res://scenes/scenes.tscn"
 config/features=PackedStringArray("4.3")
 config/icon="res://icon.png"
 
 [autoload]
 
 GlobalKeyInput="*res://scripts/global/global_key_input.gd"
+GlobalData="*res://scripts/global/global_data.gd"
 
 [display]
 

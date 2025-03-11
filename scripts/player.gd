@@ -12,6 +12,9 @@ var snowball_hold: Node = null
 
 func _ready() -> void:
 	bg = get_tree().get_nodes_in_group("background")[0]
+	
+	GlobalData.view_score.connect(update_score)
+	GlobalData.who_throw_snow.connect(hurt)
 
 func _input(event: InputEvent) -> void:
 	if GlobalData.in_game:
@@ -28,7 +31,7 @@ func _input(event: InputEvent) -> void:
 			elif event.is_action_released("Charge"):
 				snowball_charging = false
 		if event is InputEventMouseButton and snowball_hold != null:
-			snowball_hold.throw()
+			snowball_hold.throw(event.position)
 			snowball_hold = null
 			$Throw.play()
 
@@ -70,3 +73,30 @@ func _physics_process(delta: float) -> void:
 	if dir != 0:
 		bg.scale =Vector2(1 - yy / 1400, 1 - yy / 1400)
 		
+
+func update_score():
+	$Score.text = "{0}".format([GlobalData.score])
+
+func hurt(pos, scale):
+	var snowball = Sprite2D.new()
+	snowball.texture = load("res://icon.png")
+	get_tree().root.add_child(snowball)
+	snowball.global_position = pos
+	snowball.scale = scale
+	
+	var tween = create_tween()
+	tween.tween_property(snowball, "position", Vector2(300, 400), 0.5)
+	tween.set_trans(Tween.TRANS_SINE)
+	tween.set_ease(Tween.EASE_OUT)
+	
+	var scale_tween = create_tween()
+	scale_tween.tween_property(snowball, "scale", Vector2(8, 8), 0.5)
+	scale_tween.set_trans(Tween.TRANS_SINE)
+	scale_tween.set_ease(Tween.EASE_OUT)
+	
+	await tween.finished
+	
+	GlobalData.score = GlobalData.score - 10
+	GlobalData.view_score.emit()
+
+	snowball.queue_free()

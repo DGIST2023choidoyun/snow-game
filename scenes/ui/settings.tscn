@@ -112,6 +112,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Effect" type="TextureRect" parent="Panel/Base"]
+layout_mode = 0
 offset_left = 34.0
 offset_top = 186.0
 offset_right = 443.0
@@ -141,6 +142,7 @@ step = 0.01
 value = 1.0
 
 [node name="Label" type="Label" parent="Panel/Base/Effect"]
+layout_mode = 0
 offset_left = 1843.75
 offset_top = 150.0
 offset_right = 2137.75

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://q1pdyx7dov4b"]
+[gd_scene load_steps=11 format=3 uid="uid://q1pdyx7dov4b"]
 
 [ext_resource type="Script" path="res://scripts/title/sky_clock.gd" id="1_nay05"]
 [ext_resource type="Texture2D" uid="uid://b0eq4jutni2rj" path="res://textures/snow_way.png" id="2_tp7y0"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dp8v4j0vv0x4v" path="res://scenes/ui/settings.tscn" id="6_3i7sf"]
 [ext_resource type="Texture2D" uid="uid://cgrprj6f6ekt4" path="res://textures/newspaper.png" id="7_abvu2"]
 [ext_resource type="FontFile" uid="uid://801dqtmrq0mt" path="res://fonts/veteran_typewriter/veteran typewriter.ttf" id="8_v1wur"]
+[ext_resource type="PackedScene" uid="uid://b1v8nt1rpeqis" path="res://scenes/objects/passenger_generator.tscn" id="9_ljev6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udl0d"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -53,6 +54,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.666667, 0.8, 1, 0.25098)
+
+[node name="PassengerGenerator" parent="Sky/BG" instance=ExtResource("9_ljev6")]
 
 [node name="Player" parent="." instance=ExtResource("3_ylcxu")]
 

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1v8nt1rpeqis"]
+
+[ext_resource type="Script" path="res://scripts/passenger_generator.gd" id="1_nan2b"]
+
+[sub_resource type="Curve2D" id="Curve2D_7vm3n"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 256, 208, 0, 0, 0, 0, -100, 652)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_5ofh8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 344, 208, 0, 0, 0, 0, 700, 652)
+}
+point_count = 2
+
+[node name="PassengerGenerator" type="Node2D"]
+script = ExtResource("1_nan2b")
+
+[node name="Path1" type="Path2D" parent="."]
+curve = SubResource("Curve2D_7vm3n")
+
+[node name="Path2" type="Path2D" parent="."]
+curve = SubResource("Curve2D_5ofh8")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

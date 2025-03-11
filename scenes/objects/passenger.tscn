@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=3 uid="uid://cxs8esnbgpfvx"]
+
+[ext_resource type="Texture2D" uid="uid://bwt2swxho8ltl" path="res://textures/passenger-1.png" id="1_dkfb6"]
+[ext_resource type="Script" path="res://scripts/passenger.gd" id="1_wldnf"]
+[ext_resource type="Texture2D" uid="uid://fuucgp063h4u" path="res://textures/passenger-3.png" id="2_0f3tx"]
+[ext_resource type="Texture2D" uid="uid://d0jt8lemx85fn" path="res://textures/passenger-2.png" id="3_1cunf"]
+[ext_resource type="Texture2D" uid="uid://32o52psys1wx" path="res://textures/passenger-4.png" id="3_ds8rq"]
+[ext_resource type="AudioStream" uid="uid://d0kf3knol4srm" path="res://sounds/effect/snow_walk-1.mp3" id="5_qq2vk"]
+[ext_resource type="AudioStream" uid="uid://dyjwn6ufxoqbk" path="res://sounds/effect/throw.mp3" id="7_s35s0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y23hb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0f3tx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0f3tx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0f3tx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ds8rq")
+}],
+"loop": false,
+"name": &"shooting",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dkfb6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1cunf")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 2.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sulct"]
+radius = 2.0
+height = 10.0
+
+[node name="Passenger" type="PathFollow2D"]
+rotates = false
+loop = false
+script = ExtResource("1_wldnf")
+
+[node name="Area2D" type="Area2D" parent="." groups=["Passenger"]]
+position = Vector2(0, -8)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Area2D"]
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_y23hb")
+animation = &"shooting"
+autoplay = "walk"
+frame = 3
+frame_progress = 1.0
+
+[node name="Torso" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_sulct")
+
+[node name="Marker2D" type="Marker2D" parent="Area2D"]
+position = Vector2(0, -2)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Walk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_qq2vk")
+volume_db = 10.0
+autoplay = true
+max_distance = 100.0
+
+[node name="Throw" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_s35s0")
+volume_db = 10.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="animation_finished" from="Area2D/Sprite" to="." method="_on_sprite_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

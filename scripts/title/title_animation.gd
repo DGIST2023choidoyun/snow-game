@@ -40,5 +40,7 @@ func start():
 func _on_pre_game_gui_input(event: InputEvent) -> void:
 	if can_touch and event.is_pressed():
 		GlobalData.in_game = true
+		GlobalData.game_start.emit()
+		GlobalData.view_score.emit()
 		self.queue_free()
 		

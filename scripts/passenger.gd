@@ -6,12 +6,12 @@ var timer_on: bool = false
 var coef: float = 1.0
 
 func _ready() -> void:
-	if randi() % 100 < 20: # 10% probability
+	if randi() % 100 < 70: # 70% probability
 		enemy = true
 
 func _physics_process(delta: float) -> void:
 	var scalar = (progress_ratio) / 0.8 * 19 + 1
-	progress_ratio += (0.01 + progress_ratio) * delta * 0.1 * coef
+	progress_ratio += (0.01 + progress_ratio) * delta * 0.32 * coef
 	scale = Vector2(scalar, scalar)
 	
 	if enemy and progress_ratio >= 0.2 and not timer_on:

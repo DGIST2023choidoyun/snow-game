@@ -16,6 +16,22 @@ func _ready() -> void:
 	GlobalData.view_score.connect(update_score)
 	GlobalData.who_throw_snow.connect(hurt)
 
+func _process(delta: float) -> void:
+	if snowball_charging:
+		if not $Make.playing:
+			$Make.play()
+		$SnowballProgress.value += delta * 30
+		if $SnowballProgress.value >= 100:
+			snowball_charging = false
+			$SnowballProgress.value = 0
+			
+			snowball_hold = snowball_obj.instantiate()
+			get_tree().root.add_child(snowball_hold)
+			snowball_hold.global_position = $SnowballProgress/Marker2D.global_position
+	else:
+		$SnowballProgress.value -= delta * 60
+
+
 func _input(event: InputEvent) -> void:
 	if GlobalData.in_game:
 		if event.is_action_pressed("Head Up"):
@@ -34,21 +50,6 @@ func _input(event: InputEvent) -> void:
 			snowball_hold.throw(event.position)
 			snowball_hold = null
 			$Throw.play()
-
-func _process(delta: float) -> void:
-	if snowball_charging:
-		if not $Make.playing:
-			$Make.play()
-		$SnowballProgress.value += delta * 30
-		if $SnowballProgress.value >= 100:
-			snowball_charging = false
-			$SnowballProgress.value = 0
-			
-			snowball_hold = snowball_obj.instantiate()
-			get_tree().root.add_child(snowball_hold)
-			snowball_hold.global_position = $SnowballProgress/Marker2D.global_position
-	else:
-		$SnowballProgress.value -= delta * 60
 
 func _physics_process(delta: float) -> void:
 	var yy = bg.position.y

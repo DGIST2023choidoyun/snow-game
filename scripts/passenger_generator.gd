@@ -17,5 +17,5 @@ func _on_timer_timeout() -> void:
 	random_path.add_child(passenger)
 	cnt += 1
 	
-	if cnt % 10 == 0 and $Timer.wait_time > 1:
-		$Timer.wait_time -= 1
+	#if cnt % 10 == 0 and $Timer.wait_time > 1:
+		#$Timer.wait_time -= 1

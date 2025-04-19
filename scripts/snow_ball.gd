@@ -1,6 +1,8 @@
 extends Area2D
 
 
+@onready var score_checker_scene = preload("res://scenes/ui/score_checker.tscn")
+
 
 func throw(pos):
 	pos = clamp(pos, Vector2(pos.x, 208), Vector2(pos.x, 448))
@@ -44,6 +46,10 @@ func _on_area_entered(area: Area2D) -> void:
 		if area.get_parent().enemy and area.get_child(0).animation == "shooting":
 			GlobalData.score = GlobalData.score + 1
 			GlobalData.view_score.emit()
+			
+			var score_checker = score_checker_scene.instantiate()
+			get_tree().root.add_child(score_checker)
+			score_checker.global_position = global_position
 		else:
 			GlobalData.score = GlobalData.score - 1
 			GlobalData.view_score.emit()

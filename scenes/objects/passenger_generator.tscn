@@ -24,6 +24,6 @@ curve = SubResource("Curve2D_7vm3n")
 curve = SubResource("Curve2D_5ofh8")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 6.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

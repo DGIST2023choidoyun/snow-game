@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c88exphl8tt7j"]
+
+[ext_resource type="Script" path="res://scripts/score_checker.gd" id="1_enc05"]
+[ext_resource type="FontFile" uid="uid://ebg8pxwvi7c1" path="res://fonts/Cinzel,Oswald/Cinzel/Cinzel-VariableFont_wght.ttf" id="1_n1d0m"]
+
+[node name="ScoreChecker" type="Node2D"]
+script = ExtResource("1_enc05")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.494118, 0.678431, 0.898039, 1)
+theme_override_fonts/font = ExtResource("1_n1d0m")
+theme_override_font_sizes/font_size = 36
+text = "+1"
+horizontal_alignment = 1
+vertical_alignment = 1
